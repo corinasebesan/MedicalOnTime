@@ -1,0 +1,30 @@
+# Secrets. Never commit these.
+.env
+.env.*
+!.env.example
+*.local.properties
+application-local.properties
+
+# Build output
+medicalontime-backend/target/
+medicalontime-frontend/build/
+medicalontime-frontend/node_modules/
+
+# Editors
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Original coursework documents, kept out of the public repository
+*.doc
+*.docx
+
+# ESLint cache
+medicalontime-frontend/.eslintcache
