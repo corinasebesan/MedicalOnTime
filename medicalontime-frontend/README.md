@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# MedicalOnTime frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The React client. See the [README at the root of the repository](../README.md)
+for what the application does, how authentication works and how to run both
+halves together.
 
-## Available Scripts
+## Running it on its own
 
-In the project directory, you can run:
+```bash
+npm install
+npm start
+```
 
-### `npm start`
+It serves on `http://localhost:3000` and expects the API on
+`http://localhost:8080`. Point it elsewhere by copying `.env.example` to
+`.env.local` and setting `REACT_APP_API_BASE_URL`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The backend has to be running. Every screen behind the login reads from it.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Where things are
 
-### `npm test`
+```
+src/
+  services/
+    api.js            the shared axios instance, token interceptor and 401 handling
+    AuthService.js    sign in, sign up, the stored session
+    MeService.js      the caller's own profile, appointments and treatment notes
+    *Service.js       one per resource, all on top of api.js
+  components/
+    PrivateRoute.jsx  renders a screen only for a signed in account with the right role
+    login/            sign in and sign up, sharing one CredentialsForm
+    admin/            doctor directory, patient and appointment lists
+    doctor/           own schedule, patient lookup, treatment notes
+    patient/          own profile, booking, cancellation, doctor search
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Bootstrapped with Create React App, so `npm test` and `npm run build` work as
+usual.
